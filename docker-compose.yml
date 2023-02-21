@@ -33,6 +33,7 @@ services:
       - ./logs/php.log:/var/log/fpm-php.www.log
     links:
       - mariadb
+      - wpcli
   mariadb:
     container_name: wordpress-mariadb
     image: mariadb:10.7
@@ -47,6 +48,8 @@ services:
       - MYSQL_DATABASE=database
     networks:
       - internal
+    links:
+      - wpcli
   wpcli:
     container_name: wordpress-cli
     depends_on:
