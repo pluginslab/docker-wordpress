@@ -2,7 +2,7 @@
 version: "3"
 services:
   nginx:
-    container_name: wordpress-nginx
+    container_name: ${SITENAME:-wordpress}-nginx
     build:
       context: .
       dockerfile: docker/nginx/Dockerfile
@@ -16,10 +16,8 @@ services:
     volumes:
       - ./data:/var/www/html
       - ./logs/nginx:/var/log/nginx
-    links:
-      - php
   php:
-    container_name: wordpress-php
+    container_name: ${SITENAME:-wordpress}-php
     build:
       context: .
       dockerfile: docker/php/Dockerfile
@@ -31,11 +29,8 @@ services:
     volumes:
       - ./data:/var/www/html
       - ./logs/php.log:/var/log/fpm-php.www.log
-    links:
-      - mariadb
-      - wpcli
   mariadb:
-    container_name: wordpress-mariadb
+    container_name: ${SITENAME:-wordpress}-mariadb
     image: mariadb:10.7
     ports:
       - 3306:3306
@@ -48,10 +43,8 @@ services:
       - MYSQL_DATABASE=database
     networks:
       - internal
-    links:
-      - wpcli
   wpcli:
-    container_name: wordpress-cli
+    container_name: ${SITENAME:-wordpress}-cli
     depends_on:
       - nginx
       - php
@@ -66,11 +59,8 @@ services:
       WORDPRESS_DB_NAME: database
     networks:
       - internal
-    links:
-      - mariadb
-      - php
-      - nginx
   mailhog:
+    container_name: ${SITENAME:-wordpress}-mailhog
     platform: linux/amd64
     image: mailhog/mailhog
     networks:
