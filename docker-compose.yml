@@ -25,7 +25,7 @@ services:
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
-        - NEWRELIC_KEY="eu01xx74e1dafc9706935f66a38aceaa0863NRAL"
+        - NEWRELIC_KEY=${NEWRELIC_LICENSE_KEY:-}
         - NEWRELIC_APP_NAME=${SITENAME:-wordpress}-docker
         - NEWRELIC_DAEMON_ADDRESS="newrelic:31339"
     networks:
