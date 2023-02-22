@@ -18,12 +18,16 @@ services:
       - ./logs/nginx:/var/log/nginx
   php:
     container_name: ${SITENAME:-wordpress}-php
+    platform: linux/amd64
     build:
       context: .
       dockerfile: docker/php/Dockerfile
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
+        - NEWRELIC_KEY="eu01xx74e1dafc9706935f66a38aceaa0863NRAL"
+        - NEWRELIC_APP_NAME=${SITENAME:-wordpress}-docker
+        - NEWRELIC_DAEMON_ADDRESS="newrelic:31339"
     networks:
       - internal
     volumes:
@@ -68,6 +72,12 @@ services:
     ports:
       - 1025:1025 # smtp server
       - 8025:8025 # web ui
+  newrelic:
+    platform: linux/amd64
+    networks:
+      - internal
+    container_name: ${SITENAME:-wordpress}-newrelic
+    image: newrelic/php-daemon
 networks:
   internal:
     driver: bridge
