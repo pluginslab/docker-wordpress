@@ -56,6 +56,7 @@ services:
     command: tail -f /dev/null
     volumes:
       - ./data:/var/www/html
+    user: "${UID:-1000}:${GID:-1000}"
     environment:
       WORDPRESS_DB_HOST: mariadb:3306
       WORDPRESS_DB_USER: user
