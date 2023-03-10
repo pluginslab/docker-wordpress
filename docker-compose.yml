@@ -81,6 +81,7 @@ services:
     image: newrelic/php-daemon
     deploy:
       condition: ${NEWRELIC_ENABLED:-false}
+
 networks:
   internal:
     driver: bridge
