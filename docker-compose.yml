@@ -79,8 +79,7 @@ services:
       - internal
     container_name: ${SITENAME:-wordpress}-newrelic
     image: newrelic/php-daemon
-    deploy:
-      condition: ${NEWRELIC_ENABLED:-false}
+    condition: ${NEWRELIC_ENABLED:-false}
 
 networks:
   internal:
