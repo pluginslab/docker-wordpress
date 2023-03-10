@@ -29,5 +29,5 @@ RUN if [ "$NEWRELIC_ENABLED" = "true" ]; then \
     -e 's/;newrelic.daemon.start_timeout =.*/newrelic.daemon.start_timeout=5s/' \
     -e 's/;newrelic.daemon.address =.*/newrelic.daemon.address='"$NEWRELIC_DAEMON_ADDRESS"'/' \
     -e 's/;newrelic.daemon.dont_launch =.*/newrelic.daemon.dont_launch = 3/' \
-    /usr/local/etc/php/conf.d/newrelic.ini
+    /usr/local/etc/php/conf.d/newrelic.ini \
   fi
