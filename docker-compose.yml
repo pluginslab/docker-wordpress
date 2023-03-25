@@ -62,7 +62,6 @@ services:
       - internal
   mailhog:
     container_name: ${SITENAME:-wordpress}-mailhog
-    platform: linux/amd64
     image: mailhog/mailhog
     networks:
       - internal
