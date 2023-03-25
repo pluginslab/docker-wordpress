@@ -14,10 +14,11 @@ The WordPress files are mounted to a folder called `data`, and the database file
 ## Usage
 
 1. To install WordPress using WP-CLI, run the command `docker-compose exec wordpress bash` to open a shell inside the WordPress container, and then run WP-CLI commands as usual: `wp core download --path=/var/www/html --allow-root`
-2. Open your browser and go to `http://localhost:8080` to access the WordPress installation.
-3. To access Mailhog, go to `http://localhost:8025`.
-4. To view your New Relic dashboard, go to `https://rpm.newrelic.com`. If you don't see any data, wait a few minutes for the data to propagate.
-5. To stop the containers, run the command `docker-compose -f docker-compose.yml down` or `docker-compose -f docker-compose-nr.yml down`.
+2. Then, to configure WordPress with the details included, run the command `wp core config --dbname=database --dbuser=user --dbpass=password --dbhost=mariadb`
+3. Open your browser and go to `http://localhost:8080` to access the WordPress installation.
+4. To access Mailhog, go to `http://localhost:8025`.
+5. To view your New Relic dashboard, go to `https://rpm.newrelic.com`. If you don't see any data, wait a few minutes for the data to propagate.
+6. To stop the containers, run the command `docker-compose -f docker-compose.yml down` or `docker-compose -f docker-compose-nr.yml down`.
 
 ## Contributing
 
